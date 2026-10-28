@@ -210,7 +210,7 @@ fun PantallaAjustes(
                 Seccion("Privacidad y seguridad") {
                     Interruptor(
                         "Pedir huella o PIN al abrir",
-                        if (bloqueoDisponible) "Usa el bloqueo de tu celular. Sencillo nunca ve tu huella ni tu PIN."
+                        if (bloqueoDisponible) "Usa el bloqueo de tu celular. Ahorro+ nunca ve tu huella ni tu PIN."
                         else "Primero configura un bloqueo de pantalla en tu celular.",
                         perfil.bloqueo,
                         habilitado = bloqueoDisponible,
@@ -230,7 +230,7 @@ fun PantallaAjustes(
                         Icon(Iconos.candado, null, tint = p.marca, modifier = Modifier.size(18.dp))
                         Spacer(Modifier.width(8.dp))
                         Text(
-                            "Sencillo no tiene permiso para usar internet. Tus datos se guardan solo en este celular y no se copian a la nube.",
+                            "Ahorro+ no tiene permiso para usar internet. Tus datos se guardan solo en este celular y no se copian a la nube.",
                             fontSize = 13.sp, color = p.texto2,
                         )
                     }
@@ -255,7 +255,7 @@ fun PantallaAjustes(
                         { if (confirmarBorrado) { vm.borrarTodo(); onCerrar() } else confirmarBorrado = true },
                         Modifier.fillMaxWidth(), peligro = true,
                     )
-                    Text("Sencillo ${BuildConfig.VERSION_NAME}", fontSize = 12.sp, color = p.tenue, modifier = Modifier.padding(top = 12.dp))
+                    Text("Ahorro+ ${BuildConfig.VERSION_NAME}", fontSize = 12.sp, color = p.tenue, modifier = Modifier.padding(top = 12.dp))
                 }
             }
         }
@@ -269,7 +269,7 @@ fun PantallaAjustes(
                 dialogoClave = null
                 if (modo == "exportar") {
                     claveExportar = clave
-                    crearArchivo.launch("sencillo-respaldo-${LocalDate.now()}.sencillo")
+                    crearArchivo.launch("ahorro-mas-respaldo-${LocalDate.now()}.respaldo")
                 } else {
                     val bytes = bytesImportar
                     bytesImportar = null

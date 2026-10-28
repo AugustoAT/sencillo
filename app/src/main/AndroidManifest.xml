@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Sencillo no pide permisos peligrosos y NO tiene acceso a internet.
+    <!-- Ahorro+ no pide permisos peligrosos y NO tiene acceso a internet.
          Si alguna librería intentara agregar estos permisos, se eliminan aquí. -->
     <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />

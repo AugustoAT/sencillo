@@ -1,4 +1,4 @@
-# Sencillo
+# Ahorro+
 
 App de Android para llevar el sueldo, los gastos y el ahorro del mes, en soles. Se anota cada gasto (hasta el menú de S/ 12) en segundos, y la app muestra a dónde se va la plata y sugiere qué cambiar.
 
@@ -34,8 +34,8 @@ App de Android para llevar el sueldo, los gastos y el ahorro del mes, en soles. 
 
 ## Instalar
 
-1. En [Releases](../../releases) descarga `sencillo-vX.Y.Z.apk` y su `.sha256`.
-2. Verifica el archivo: `sha256sum -c sencillo-vX.Y.Z.apk.sha256`.
+1. En [Releases](../../releases) descarga `ahorro-mas-vX.Y.Z.apk` y su `.sha256`.
+2. Verifica el archivo: `sha256sum -c ahorro-mas-vX.Y.Z.apk.sha256`.
 3. En el celular, permite instalar apps de esa fuente cuando Android lo pida, y abre el APK.
 
 Requiere Android 8.0 o superior.
@@ -103,5 +103,7 @@ Stack:
 - androidx.biometric 1.1.0
 - AGP 8.5.2
 - Gradle 8.9
+
+El proyecto empezó como "Sencillo". Los nombres internos se mantienen: paquete `pe.sencillo.app`, clases, variables `SENCILLO_*` de firma y carpeta `~/.sencillo`. Cambiar el id del paquete haría que Android trate la app como otra distinta y no se podría actualizar encima de la instalada.
 
 Las fuentes Archivo, Albert Sans e IBM Plex Mono van dentro de la app con licencia SIL OFL 1.1 (ver `licencias/`).

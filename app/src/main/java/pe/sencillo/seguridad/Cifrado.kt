@@ -39,10 +39,10 @@ object Cifrado {
     }
 
     fun descifrar(archivo: ByteArray, clave: CharArray): ByteArray {
-        if (archivo.size < CABECERA + 16) throw RespaldoInvalido("El archivo no es un respaldo de Sencillo.")
+        if (archivo.size < CABECERA + 16) throw RespaldoInvalido("El archivo no es un respaldo de Ahorro+.")
         val b = ByteBuffer.wrap(archivo)
         val magia = ByteArray(MAGIA.size).also { b.get(it) }
-        if (!magia.contentEquals(MAGIA)) throw RespaldoInvalido("El archivo no es un respaldo de Sencillo.")
+        if (!magia.contentEquals(MAGIA)) throw RespaldoInvalido("El archivo no es un respaldo de Ahorro+.")
         val iter = b.int
         if (iter !in MIN_ITER..MAX_ITER) throw RespaldoInvalido("El respaldo está dañado.")
         val sal = ByteArray(LARGO_SAL).also { b.get(it) }

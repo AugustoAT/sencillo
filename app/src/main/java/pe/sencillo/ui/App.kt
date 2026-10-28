@@ -76,7 +76,7 @@ private fun PantallaBloqueo(onDesbloquear: () -> Unit) {
     ) {
         Moneda("S/", 64.dp)
         Spacer(Modifier.height(18.dp))
-        Text("Sencillo está bloqueado", style = MaterialTheme.typography.titleMedium)
+        Text("Ahorro+ está bloqueado", style = MaterialTheme.typography.titleMedium)
         Text("Usa tu huella, tu rostro o el bloqueo de tu celular.", color = p.texto2, fontSize = 14.sp, modifier = Modifier.padding(top = 4.dp))
         Spacer(Modifier.height(20.dp))
         BotonPrincipal("Desbloquear", onDesbloquear)
@@ -116,7 +116,7 @@ private fun Principal(vm: AppViewModel, e: EstadoUi.Listo) {
     Box(Modifier.fillMaxSize().background(p.papel)) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
             Row(Modifier.fillMaxWidth().padding(start = 16.dp, end = 8.dp, top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-                Text("Sencillo", fontFamily = Fuentes.billete, fontSize = 22.sp, modifier = Modifier.weight(1f))
+                Text("Ahorro+", fontFamily = Fuentes.billete, fontSize = 22.sp, modifier = Modifier.weight(1f))
                 IconButton(onClick = { ajustes = "todo" }) { Icon(Iconos.ajustes, "Ajustes", tint = p.texto2) }
             }
             if (pestana != Pestana.METAS) {

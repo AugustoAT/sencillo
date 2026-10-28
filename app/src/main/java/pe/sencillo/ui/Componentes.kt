@@ -223,7 +223,7 @@ private fun Modifier.guilloche(color: Color) = drawWithCache {
         textSize = 6.5.dp.toPx()
         typeface = Typeface.MONOSPACE
     }
-    val micro = "SENCILLO  LO QUE APARTAS PRIMERO NO SE GASTA  ".repeat(10)
+    val micro = "AHORRO+  LO QUE APARTAS PRIMERO NO SE GASTA  ".repeat(10)
     onDrawBehind {
         rosetas.forEach { drawPath(it, color, style = trazo) }
         ondas.forEach { drawPath(it, color, style = trazo) }

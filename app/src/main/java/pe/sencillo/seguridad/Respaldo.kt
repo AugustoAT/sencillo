@@ -65,8 +65,8 @@ object Respaldo {
     }
 
     private fun leer(o: JSONObject): DatosRespaldo {
-        exigir(o.optString("app") == "sencillo", "El archivo no es un respaldo de Sencillo.")
-        exigir(o.optInt("version") == VERSION, "Este respaldo es de otra versión de Sencillo.")
+        exigir(o.optString("app") == "sencillo", "El archivo no es un respaldo de Ahorro+.")
+        exigir(o.optInt("version") == VERSION, "Este respaldo es de otra versión de Ahorro+.")
 
         val p = o.getJSONObject("perfil")
         val perfil = Perfil(

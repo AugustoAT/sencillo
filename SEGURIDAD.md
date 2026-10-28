@@ -1,15 +1,15 @@
 # Seguridad y protección de datos
 
-Sencillo guarda cuánto gana y en qué gasta una persona. Es información sensible, así que la app parte de una regla: **tus datos no salen del celular, salvo que tú exportes un respaldo cifrado**. Además, la app no puede servir de puerta de entrada para atacar el resto del dispositivo.
+Ahorro+ guarda cuánto gana y en qué gasta una persona. Es información sensible, así que la app parte de una regla: **tus datos no salen del celular, salvo que tú exportes un respaldo cifrado**. Además, la app no puede servir de puerta de entrada para atacar el resto del dispositivo.
 
 ## De qué nos protegemos
 
-| Riesgo | Qué hace Sencillo |
+| Riesgo | Qué hace Ahorro+ |
 |---|---|
 | La app envía datos a un servidor, sea por un bug o por una librería maliciosa | No tiene permiso de **internet**. El manifest lo elimina de forma explícita (`tools:node="remove"`), aunque una librería intente agregarlo. Android bloquea cualquier conexión. |
 | Otra app del celular lee o modifica los datos | La base de datos vive en el espacio privado de la app (sandbox de Android). No se exporta ningún `ContentProvider`, `Service` ni `BroadcastReceiver`. La única pantalla exportada es la del launcher. |
-| Otra app manda datos falsos a Sencillo (intents) | El atajo "Anotar gasto" solo acepta su acción exacta y **no lee ningún dato** del intent. Solo abre la hoja vacía. |
-| Alguien toma el celular desbloqueado | Bloqueo opcional con huella, rostro o PIN del celular (`BiometricPrompt`). Se vuelve a pedir si la app pasa más de 30 segundos en segundo plano. Sencillo nunca ve la huella ni el PIN. |
+| Otra app manda datos falsos a Ahorro+ (intents) | El atajo "Anotar gasto" solo acepta su acción exacta y **no lee ningún dato** del intent. Solo abre la hoja vacía. |
+| Alguien toma el celular desbloqueado | Bloqueo opcional con huella, rostro o PIN del celular (`BiometricPrompt`). Se vuelve a pedir si la app pasa más de 30 segundos en segundo plano. Ahorro+ nunca ve la huella ni el PIN. |
 | Capturas de pantalla o vista previa en "apps recientes" | `FLAG_SECURE` activo por defecto: el contenido se tapa en recientes y no se pueden hacer capturas. Se puede desactivar en Ajustes. |
 | Copias automáticas a la nube o a otro equipo | `allowBackup="false"` y reglas de extracción que excluyen todo. Para mudarse de celular está el respaldo cifrado. |
 | Pérdida o robo del archivo de respaldo | El respaldo se cifra con **AES-256-GCM**. La clave se deriva de una contraseña con **PBKDF2-HMAC-SHA256 (600 000 iteraciones)**, sal aleatoria de 16 bytes e IV de 12 bytes. Sin la contraseña no se puede abrir. |
@@ -19,7 +19,7 @@ Sencillo guarda cuánto gana y en qué gasta una persona. Es información sensib
 | Librerías adulteradas (cadena de suministro) | Versiones exactas en `gradle/libs.versions.toml`, cada repositorio limitado a sus grupos (`settings.gradle.kts`), **verificación SHA-256 de cada dependencia** (`gradle/verification-metadata.xml`), wrapper de Gradle con checksum oficial y acciones de CI fijadas por SHA de commit. |
 | Ingeniería inversa del APK | R8 minimiza y ofusca el release, y se eliminan los logs. No hay secretos dentro del APK que valga la pena extraer. |
 
-## Lo que Sencillo no protege
+## Lo que Ahorro+ no protege
 
 - **Un celular con root o con malware de sistema** puede leer el almacenamiento de cualquier app. Con el celular apagado o bloqueado, los datos quedan protegidos por el cifrado de Android (FBE).
 - **La contraseña del respaldo** solo la conoces tú. Si la olvidas, ese respaldo no se puede abrir.

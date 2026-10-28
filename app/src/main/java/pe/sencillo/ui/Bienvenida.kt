@@ -66,7 +66,7 @@ fun Bienvenida(onEmpezar: (sueldo: Long, diaPago: Int, ahorroPct: Int, bloqueo: 
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Moneda("S/", 56.dp)
-        Text("Sencillo", fontFamily = Fuentes.billete, fontSize = 44.sp, letterSpacing = (-0.03).em)
+        Text("Ahorro+", fontFamily = Fuentes.billete, fontSize = 44.sp, letterSpacing = (-0.03).em)
         Text(
             "Tu sueldo, tus gastos y tu ahorro del mes, en soles. Anota cada gasto en segundos y mira a dónde se va tu plata.",
             fontSize = 17.sp, lineHeight = 24.sp, color = p.texto2,
@@ -115,7 +115,7 @@ fun Bienvenida(onEmpezar: (sueldo: Long, diaPago: Int, ahorroPct: Int, bloqueo: 
                 Icon(Iconos.candado, null, tint = p.marca, modifier = Modifier.size(20.dp))
                 Spacer(Modifier.width(10.dp))
                 Text(
-                    "Tus datos se quedan en este celular. Sencillo no usa internet, no tiene cuentas ni publicidad, y no pide permisos.",
+                    "Tus datos se quedan en este celular. Ahorro+ no usa internet, no tiene cuentas ni publicidad, y no pide permisos.",
                     fontSize = 14.sp, color = p.texto2,
                 )
             }

@@ -10,7 +10,7 @@ El objetivo es que registrar un gasto cueste cada vez menos. Toda integración e
 
 | Fuente | Permisos | Estado |
 |---|---|---|
-| Atajo "Anotar gasto": mantener presionado el ícono de Sencillo | Ninguno | Listo |
+| Atajo "Anotar gasto": mantener presionado el ícono de Ahorro+ | Ninguno | Listo |
 
 ## Siguientes, en orden sugerido
 
@@ -25,4 +25,4 @@ El objetivo es que registrar un gasto cueste cada vez menos. Toda integración e
 ## Cosas que no se van a hacer
 
 - **Leer SMS.** Pide `READ_SMS`, que da acceso a todos los mensajes, incluidos los códigos de verificación de bancos. El riesgo es demasiado alto.
-- **Conectarse a bancos con usuario y contraseña** (scraping). Sencillo nunca debe tener credenciales bancarias.
+- **Conectarse a bancos con usuario y contraseña** (scraping). Ahorro+ nunca debe tener credenciales bancarias.

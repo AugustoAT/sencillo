@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentActivity
 
 /**
  * Bloqueo de la app con la huella, el rostro o el PIN/patrón del celular.
- * Sencillo nunca guarda ni ve la huella ni el PIN: eso lo maneja Android.
+ * Ahorro+ nunca guarda ni ve la huella ni el PIN: eso lo maneja Android.
  */
 object Bloqueo {
     private val autenticadores: Int
@@ -42,7 +42,7 @@ object Bloqueo {
             },
         )
         val info = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Abrir Sencillo")
+            .setTitle("Abrir Ahorro+")
             .setSubtitle("Usa tu huella, tu rostro o el bloqueo de tu celular")
             .setAllowedAuthenticators(autenticadores)
             .build()

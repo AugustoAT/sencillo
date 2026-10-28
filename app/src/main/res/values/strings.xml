@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sencillo</string>
+    <string name="app_name">Ahorro+</string>
     <string name="atajo_anotar_corto">Anotar gasto</string>
     <string name="atajo_anotar_largo">Anotar un gasto</string>
 </resources>
