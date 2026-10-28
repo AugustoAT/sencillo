@@ -1,0 +1,21 @@
+name: Idea o mejora
+description: Propón algo que haría Ahorro+ más útil
+labels: ["mejora"]
+body:
+  - type: textarea
+    id: problema
+    attributes:
+      label: Qué te cuesta hoy
+      description: Describe la situación. Por ejemplo, "anoto el pasaje todos los días y es repetitivo".
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Qué te ayudaría
+  - type: checkboxes
+    id: privacidad
+    attributes:
+      label: Privacidad
+      options:
+        - label: Entiendo que Ahorro+ no usa internet y que la idea no debería requerirlo

@@ -44,6 +44,16 @@ Requiere Android 8.0 o superior.
 > `f0:20:70:32:07:ff:0b:9e:be:c9:25:30:ce:7d:70:20:a2:e4:ab:1c:a4:fc:ed:db:fc:66:32:df:a9:6d:ee:03`.
 > Puedes revisarlo con `apksigner verify --print-certs`.
 
+## Proyecto
+
+- [Hoja de ruta](ROADMAP.md): qué viene en cada versión y con qué criterios se publica.
+- [Cambios](CHANGELOG.md) de cada versión.
+- [Proceso de desarrollo](docs/proceso.md): cómo se planifica, desarrolla y publica.
+- [Decisiones](docs/decisiones.md) tomadas y su porqué.
+- ¿Algo falla o tienes una idea? Abre un [issue](../../issues/new/choose).
+
+Ahorro+ es gratis y sin anuncios.
+
 ## Seguridad
 
 Ver [SEGURIDAD.md](SEGURIDAD.md). En corto:
