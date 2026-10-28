@@ -13,3 +13,6 @@ captures/
 keystore.properties
 *.apk
 *.aab
+
+# APK y notas de cada versión, preparados en local
+dist/
