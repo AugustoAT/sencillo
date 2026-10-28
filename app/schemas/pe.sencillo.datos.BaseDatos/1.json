@@ -1,0 +1,221 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "986f1aba599ecb212aafbece5a5c5b3f",
+    "entities": [
+      {
+        "tableName": "perfil",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `sueldo` INTEGER NOT NULL, `diaPago` INTEGER NOT NULL, `ahorroPct` INTEGER NOT NULL, `bloqueo` INTEGER NOT NULL, `ocultarPantalla` INTEGER NOT NULL, `creado` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sueldo",
+            "columnName": "sueldo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "diaPago",
+            "columnName": "diaPago",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ahorroPct",
+            "columnName": "ahorroPct",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bloqueo",
+            "columnName": "bloqueo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ocultarPantalla",
+            "columnName": "ocultarPantalla",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "creado",
+            "columnName": "creado",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "sobres",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`categoria` TEXT NOT NULL, `centimos` INTEGER NOT NULL, PRIMARY KEY(`categoria`))",
+        "fields": [
+          {
+            "fieldPath": "categoria",
+            "columnName": "categoria",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "centimos",
+            "columnName": "centimos",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "categoria"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "movimientos",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tipo` TEXT NOT NULL, `centimos` INTEGER NOT NULL, `categoria` TEXT NOT NULL, `nota` TEXT NOT NULL, `dia` INTEGER NOT NULL, `pago` TEXT, `creado` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tipo",
+            "columnName": "tipo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "centimos",
+            "columnName": "centimos",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categoria",
+            "columnName": "categoria",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nota",
+            "columnName": "nota",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dia",
+            "columnName": "dia",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pago",
+            "columnName": "pago",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creado",
+            "columnName": "creado",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_movimientos_dia",
+            "unique": false,
+            "columnNames": [
+              "dia"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_movimientos_dia` ON `${TABLE_NAME}` (`dia`)"
+          },
+          {
+            "name": "index_movimientos_tipo",
+            "unique": false,
+            "columnNames": [
+              "tipo"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_movimientos_tipo` ON `${TABLE_NAME}` (`tipo`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "metas",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nombre` TEXT NOT NULL, `objetivo` INTEGER NOT NULL, `inicial` INTEGER NOT NULL, `limite` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "nombre",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "objetivo",
+            "columnName": "objetivo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "inicial",
+            "columnName": "inicial",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "limite",
+            "columnName": "limite",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '986f1aba599ecb212aafbece5a5c5b3f')"
+    ]
+  }
+}

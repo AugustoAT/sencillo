@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="anotar_gasto"
+        android:enabled="true"
+        android:icon="@drawable/ic_atajo_anotar"
+        android:shortcutShortLabel="@string/atajo_anotar_corto"
+        android:shortcutLongLabel="@string/atajo_anotar_largo">
+        <intent
+            android:action="pe.sencillo.ANOTAR"
+            android:targetPackage="pe.sencillo.app"
+            android:targetClass="pe.sencillo.MainActivity" />
+    </shortcut>
+</shortcuts>

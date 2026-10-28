@@ -1,0 +1,15 @@
+.gradle/
+.kotlin/
+build/
+/app/build/
+local.properties
+.idea/
+*.iml
+.DS_Store
+captures/
+# Claves de firma y binarios: nunca al repo
+*.jks
+*.keystore
+keystore.properties
+*.apk
+*.aab
