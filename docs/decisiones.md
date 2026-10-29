@@ -22,3 +22,15 @@ Está en `~/.sencillo/`. Los Releases se firman en local con `scripts/publicar.s
 
 ## 2026-10-28: Gratis y sin anuncios; donaciones más adelante
 Los anuncios pagan poco en Perú (banner de unos 0.15 USD por mil vistas), obligan a pedir internet y a usar SDKs que recolectan datos, y estorban al anotar. Las donaciones voluntarias se habilitan cuando la app sea más robusta y tenga usuarios activos.
+
+## 2026-10-29: "Límites por categoría" en vez de "Sobres"
+Las primeras personas que la usaron no entendieron qué era un "sobre". El nombre debe decir qué hace: el monto máximo que quieres gastar en cada categoría al mes. Por la misma razón, el + se llama "Anotar" y "Boleta" pasó a "Movimientos". La tabla interna sigue llamándose `sobres`, para no migrar la base de datos.
+
+## 2026-10-29: Diseño plano, sin adornos
+El diseño anterior se veía "plástico", como generado por IA: gradientes, rosetón, monedas con brillo y tarjetas iguales en todas partes. Desde ahora:
+- Superficies planas, con secciones separadas por espacio y títulos.
+- El color solo comunica: acción, aviso o serie de un gráfico.
+- Lo único que destaca es el monto de lo que te queda.
+
+Cualquier pantalla nueva sigue estas reglas (ver el comentario de `ui/tema/Tema.kt`).
+

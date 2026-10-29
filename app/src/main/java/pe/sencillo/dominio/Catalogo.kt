@@ -81,7 +81,7 @@ object Catalogo {
         "servicios" to "Revisa tu plan de celular e internet. Muchas veces pagas por más datos o velocidad de la que usas.",
         "vivienda" to "Si la vivienda pasa del 35% de tu sueldo, todo lo demás se aprieta. Tenlo en cuenta en tu próxima renovación.",
         "salud" to "La salud no se recorta, pero sí conviene un pequeño fondo aparte para imprevistos médicos.",
-        "educacion" to "Si es un gasto puntual del mes, súbele el sobre en Ajustes para que tu presupuesto sea realista.",
+        "educacion" to "Si es un gasto puntual del mes, súbele el límite en Ajustes para que sea realista.",
         "deudas" to "Si tienes varias deudas, paga primero la de interés más alto y en las demás cubre solo la cuota.",
         "otros" to "Mucho en «Otros» suele ser gasto hormiga. Clasifícalo bien para ver a dónde se va.",
     )

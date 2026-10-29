@@ -40,7 +40,7 @@ object Recomendador {
             r += Recomendacion(
                 Nivel.ALERTA,
                 "Gastaste ${sol0(-a.margen)} más de lo planeado",
-                "Tu límite era ${sol0(a.limite)} para cumplir el ${a.ahorroPct}% de ahorro. Revisa qué sobres se pasaron y ajusta esos primero el próximo mes.",
+                "Tu límite era ${sol0(a.limite)} para cumplir el ${a.ahorroPct}% de ahorro. Revisa qué categorías pasaron su límite y ajusta esas primero el próximo mes.",
             )
         }
 
@@ -57,7 +57,7 @@ object Recomendador {
             .forEach { f ->
                 r += Recomendacion(
                     if (f.gastado * 10 > f.presupuesto * 12) Nivel.ALERTA else Nivel.OJO,
-                    "${f.c.nombre} se pasó de su sobre por ${sol0(f.gastado - f.presupuesto)}",
+                    "${f.c.nombre} pasó su límite por ${sol0(f.gastado - f.presupuesto)}",
                     Catalogo.consejos[f.c.id] ?: "",
                     f.gastado - f.presupuesto,
                 )
@@ -68,7 +68,7 @@ object Recomendador {
                 ?.let { f ->
                     r += Recomendacion(
                         Nivel.OJO,
-                        "${f.c.nombre} va camino a pasarse",
+                        "${f.c.nombre} va camino a pasar su límite",
                         "Llevas ${sol0(f.gastado)} de ${sol0(f.presupuesto)} y faltan ${a.diasRestantes} días. " +
                             "A este paso terminarías en ${sol0(f.proyectado)}. ${Catalogo.consejos[f.c.id] ?: ""}",
                         f.proyectado - f.presupuesto,
@@ -155,7 +155,7 @@ object Recomendador {
                     r += Recomendacion(
                         Nivel.OJO,
                         "${c.nombre} subió ${sol0(d)} frente al mes anterior",
-                        "Pasó de ${sol0(base)} a ${sol0(base + d)}. Si fue algo puntual, está bien. Si se repite, súbele el sobre o recórtalo.",
+                        "Pasó de ${sol0(base)} a ${sol0(base + d)}. Si fue algo puntual, está bien. Si se repite, súbele el límite o recórtalo.",
                     )
                 }
         }

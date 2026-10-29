@@ -67,14 +67,15 @@ fun PantallaAnalisis(e: EstadoUi.Listo, lista: LazyListState) {
     val p = Tema.p
     val a = e.analisis
     val ingreso = maxOf(1L, a.ingreso)
-    LazyColumn(state = lista, contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 130.dp)) {
+    LazyColumn(state = lista, contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 4.dp, bottom = 24.dp)) {
         item {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Column {
+                Row {
                     Cifra("Ingresos", Dinero.sol0(a.ingreso), if (a.extra > 0) "incluye ${Dinero.sol0(a.extra)} extra" else "sueldo neto", Modifier.weight(1f))
                     Cifra("Gastos", Dinero.sol0(a.gastado), "${Dinero.pct(a.gastado.toDouble() / ingreso)} de lo que entró", Modifier.weight(1f))
                 }
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Separador()
+                Row {
                     Cifra("Ahorrado", Dinero.sol0(a.ahorrado), "meta: ${Dinero.sol0(a.ingreso * a.ahorroPct / 100)}", Modifier.weight(1f))
                     Cifra("Gasto diario promedio", Dinero.sol0(if (a.dia > 0) a.variables / a.dia else 0), "sin contar fijos", Modifier.weight(1f))
                 }
@@ -83,7 +84,7 @@ fun PantallaAnalisis(e: EstadoUi.Listo, lista: LazyListState) {
         item { Panel("Ritmo del mes", "Gasto acumulado frente al límite que te deja ahorrar el ${a.ahorroPct}%") { GraficoRitmo(a) } }
         item { Panel("Regla 50 / ${50 - a.ahorroPct} / ${a.ahorroPct}", "Cómo se reparte lo que entró: necesidades, gustos y ahorro") { Reparto(a) } }
         item {
-            Panel("Por categoría", "Barra: lo gastado. Línea vertical: tu sobre" + if (a.porCategoriaAnterior != null) ". Entre paréntesis, el mes anterior." else ".") {
+            Panel("Por categoría", "Barra: lo que gastaste. Línea vertical: tu límite" + if (a.porCategoriaAnterior != null) ". Entre paréntesis, el mes anterior." else ".") {
                 Categorias(e)
             }
         }
@@ -115,28 +116,26 @@ fun PantallaAnalisis(e: EstadoUi.Listo, lista: LazyListState) {
 @Composable
 private fun Cifra(etiqueta: String, valor: String, nota: String, modifier: Modifier) {
     val p = Tema.p
-    Tarjeta(modifier) {
-        Column(Modifier.padding(horizontal = 14.dp, vertical = 13.dp)) {
-            Text(etiqueta, fontSize = 12.5.sp, color = p.tenue, maxLines = 1)
-            Text(valor, fontFamily = Fuentes.titulo, fontSize = 22.sp, maxLines = 1)
-            Text(nota, fontSize = 12.sp, color = p.texto2, maxLines = 1)
-        }
+    Column(modifier.padding(vertical = 14.dp)) {
+        Text(etiqueta, fontSize = 12.5.sp, color = p.texto2, maxLines = 1)
+        Text(valor, fontFamily = Fuentes.cifra, fontSize = 22.sp, maxLines = 1)
+        Text(nota, fontSize = 12.5.sp, color = p.texto2, maxLines = 1)
     }
 }
 
+/** Una sección de análisis: título, explicación y contenido, separada de la anterior por una línea. */
 @Composable
 private fun Panel(titulo: String, sub: String, contenido: @Composable () -> Unit) {
-    Tarjeta(Modifier.padding(top = 10.dp)) {
-        Column(Modifier.padding(horizontal = 14.dp, vertical = 16.dp)) {
-            Text(titulo, style = MaterialTheme.typography.titleSmall)
-            Text(sub, fontSize = 13.sp, color = Tema.p.tenue)
-            contenido()
-        }
+    Column(Modifier.padding(top = 8.dp)) {
+        Separador()
+        Text(titulo, style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 22.dp))
+        Text(sub, fontSize = 13.5.sp, color = Tema.p.texto2, modifier = Modifier.padding(top = 2.dp))
+        contenido()
     }
 }
 
 @Composable
-private fun Clave(color: Color, texto: String, linea: Boolean = false, punteada: Boolean = false) {
+private fun ClaveGrafico(color: Color, texto: String, linea: Boolean = false, punteada: Boolean = false) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         if (linea) Canvas(Modifier.width(16.dp).height(8.dp)) {
             drawLine(color, Offset(0f, size.height / 2), Offset(size.width, size.height / 2), strokeWidth = 2.dp.toPx(),
@@ -176,9 +175,9 @@ private fun GraficoRitmo(a: Analisis) {
     val (paso, maximo) = escala(tope * 1.04)
 
     Row(Modifier.padding(top = 10.dp), horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-        Clave(p.marca, "Gastado", linea = true)
-        if (a.esActual) Clave(p.marca.copy(alpha = .55f), "Proyección", linea = true, punteada = true)
-        Clave(p.tenue, "Ritmo ideal", linea = true)
+        ClaveGrafico(p.marca, "Gastado", linea = true)
+        if (a.esActual) ClaveGrafico(p.marca.copy(alpha = .55f), "Proyección", linea = true, punteada = true)
+        ClaveGrafico(p.tenue, "Ritmo ideal", linea = true)
     }
     val ideal = { d: Int -> a.limite * d / dm }
     val info = sel?.let { d ->
@@ -343,8 +342,8 @@ private fun Categorias(e: EstadoUi.Listo) {
         .sortedByDescending { it.second }
     val escala = maxOf(1L, filas.maxOfOrNull { maxOf(it.second, it.third) } ?: 1L).toFloat()
     Row(Modifier.padding(top = 10.dp), horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-        Clave(p.nec, "Necesidad")
-        Clave(p.gus, "Gusto")
+        ClaveGrafico(p.nec, "Necesidad")
+        ClaveGrafico(p.gus, "Gusto")
     }
     Column(Modifier.padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         filas.forEach { (c, gastado, sobre) ->
@@ -367,7 +366,7 @@ private fun Categorias(e: EstadoUi.Listo) {
                 if (sobre in 1 until gastado) Row(Modifier.padding(top = 3.dp), verticalAlignment = Alignment.CenterVertically) {
                     Icon(Iconos.alerta, null, tint = p.alerta, modifier = Modifier.size(12.dp))
                     Spacer(Modifier.width(4.dp))
-                    Text("se pasó ${Dinero.sol0(gastado - sobre)} de su sobre", fontSize = 12.sp, color = p.alertaTexto, fontWeight = FontWeight.SemiBold)
+                    Text("Te pasaste por ${Dinero.sol0(gastado - sobre)}", fontSize = 12.sp, color = p.alertaTexto, fontWeight = FontWeight.SemiBold)
                 }
             }
         }

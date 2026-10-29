@@ -77,9 +77,10 @@ private fun leerConLimite(entrada: InputStream, limite: Int): ByteArray? {
 fun PantallaAjustes(
     e: EstadoUi.Listo,
     vm: AppViewModel,
-    enfocarSobres: Boolean,
+    enfocarLimites: Boolean,
     avisar: (String) -> Unit,
     onCerrar: () -> Unit,
+    onVerTutorial: () -> Unit,
 ) {
     val p = Tema.p
     val ctx = LocalContext.current
@@ -97,7 +98,7 @@ fun PantallaAjustes(
     var trabajando by remember { mutableStateOf(false) }
     val bloqueoDisponible = remember { Bloqueo.disponible(ctx) }
     val lista = rememberLazyListState()
-    LaunchedEffect(enfocarSobres) { if (enfocarSobres) lista.scrollToItem(2) }
+    LaunchedEffect(enfocarLimites) { if (enfocarLimites) lista.scrollToItem(2) }
 
     val crearArchivo = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/octet-stream")) { uri ->
         val clave = claveExportar
@@ -140,7 +141,7 @@ fun PantallaAjustes(
             s == null || s <= 0 -> "Escribe tu sueldo neto en soles."
             d == null || d !in 1..31 -> "El día de pago va del 1 al 31."
             a == null || a !in 0..80 -> "La meta de ahorro va de 0% a 80%."
-            nuevos.values.any { it == null } -> "Revisa los montos de los sobres."
+            nuevos.values.any { it == null } -> "Revisa los montos de los límites."
             else -> null
         }
         if (error != null) return
@@ -153,7 +154,7 @@ fun PantallaAjustes(
         LazyColumn(
             state = lista,
             modifier = Modifier.fillMaxSize().statusBarsPadding().imePadding(),
-            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 40.dp),
+            contentPadding = PaddingValues(start = 20.dp, end = 20.dp, bottom = 40.dp),
         ) {
             item {
                 Row(Modifier.fillMaxWidth().padding(vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -171,13 +172,18 @@ fun PantallaAjustes(
                 }
             }
             item {
-                Seccion("Sobres del mes", accion = "Repartir 50/30/20", onAccion = {
+                Seccion(
+                    "Límites por categoría",
+                    "Lo máximo que quieres gastar en cada cosa al mes. Pon 0 si no quieres límite.",
+                    accion = "Repartir 50/30/20",
+                    onAccion = {
                     val s = Dinero.deTexto(sueldo) ?: perfil.sueldo
                     val a = (ahorro.toIntOrNull() ?: perfil.ahorroPct).coerceIn(0, 80)
                     Catalogo.sobresBase(s, a).forEach { (k, v) -> sobres[k] = Dinero.aTexto(v) }
-                }) {
+                    },
+                ) {
                     Grupo.entries.forEach { g ->
-                        Text(g.nombre, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, color = p.tenue, modifier = Modifier.padding(top = 6.dp))
+                        Text(g.nombre, fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold, color = p.texto2, modifier = Modifier.padding(top = 6.dp))
                         Catalogo.gastos.filter { it.grupo == g }.forEach { c ->
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Text(c.nombre, Modifier.weight(1f), fontSize = 15.sp)
@@ -196,7 +202,7 @@ fun PantallaAjustes(
                     val total = sobres.values.sumOf { Dinero.deTexto(it.ifBlank { "0" }) ?: 0L }
                     val lim = (Dinero.deTexto(sueldo) ?: 0L) * (100 - (ahorro.toIntOrNull() ?: 0)) / 100
                     Text(
-                        "Total en sobres: ${Dinero.sol0(total)} de ${Dinero.sol0(lim)} disponibles para gastar." +
+                        "Tus límites suman ${Dinero.sol0(total)}. Para cumplir tu meta de ahorro puedes gastar hasta ${Dinero.sol0(lim)}." +
                             if (total > lim) " Te pasas por ${Dinero.sol0(total - lim)}." else "",
                         fontSize = 13.sp, color = if (total > lim) p.alertaTexto else p.texto2, modifier = Modifier.padding(top = 8.dp),
                     )
@@ -249,6 +255,12 @@ fun PantallaAjustes(
                 }
             }
             item {
+                Seccion("Ayuda") {
+                    Text("¿No recuerdas para qué sirve cada parte? El tutorial lo explica en cuatro pasos.", fontSize = 14.sp, color = p.texto2)
+                    BotonSecundario("Ver el tutorial otra vez", onVerTutorial, Modifier.fillMaxWidth())
+                }
+            }
+            item {
                 Seccion("Zona de cuidado") {
                     BotonSecundario(
                         if (confirmarBorrado) "Se borrará todo. Toca otra vez para confirmar" else "Borrar todos mis datos",
@@ -297,11 +309,16 @@ fun PantallaAjustes(
 }
 
 @Composable
-private fun Seccion(titulo: String, accion: String? = null, onAccion: () -> Unit = {}, contenido: @Composable () -> Unit) {
-    EncabezadoSeccion(titulo, accion = accion, onAccion = onAccion)
-    Tarjeta {
-        Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) { contenido() }
-    }
+private fun Seccion(
+    titulo: String,
+    subtitulo: String? = null,
+    accion: String? = null,
+    onAccion: () -> Unit = {},
+    contenido: @Composable () -> Unit,
+) {
+    EncabezadoSeccion(titulo, subtitulo, accion = accion, onAccion = onAccion)
+    Column(Modifier.padding(top = 6.dp, bottom = 10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) { contenido() }
+    Separador()
 }
 
 @Composable

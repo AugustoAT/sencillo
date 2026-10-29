@@ -23,9 +23,10 @@ import androidx.compose.ui.unit.sp
 import pe.sencillo.R
 
 /*
- * Identidad: el dinero peruano. Fondo papel verdoso, tinta de billete (verde azulado profundo),
- * dorado de moneda para la única acción principal. El billete del mes es el elemento llamativo;
- * todo lo demás es sobrio.
+ * Identidad: una libreta de cuentas bien llevada. Superficies planas sobre papel, sin gradientes,
+ * sombras ni adornos. Las secciones se separan con espacio y títulos, no con cajas. El color solo
+ * comunica: verde azulado para acciones, ámbar y rojo para avisos, y las series de los gráficos.
+ * Lo único que levanta la voz es el monto de lo que te queda.
  */
 @Immutable
 data class Paleta(
@@ -42,7 +43,7 @@ data class Paleta(
 
 val PaletaClara = Paleta(
     papel = Color(0xFFEEF2EE), carta = Color(0xFFFFFFFF), texto = Color(0xFF13221E), texto2 = Color(0xFF47554F),
-    tenue = Color(0xFF6E7B76), linea = Color(0xFFDCE3DE), linea2 = Color(0xFFC3CDC7),
+    tenue = Color(0xFF5E6B66), linea = Color(0xFFDCE3DE), linea2 = Color(0xFFC3CDC7),
     marca = Color(0xFF0F5A52), sobreMarca = Color(0xFFFFFFFF), marcaSuave = Color(0xFFD9EAE4),
     sol = Color(0xFFB8861E), solClaro = Color(0xFFE4B850), sobreSol = Color(0xFF2A1D03),
     billete = Color(0xFFDFEDE6), billete2 = Color(0xFFCFE3DA), billeteLinea = Color(0x330F5A52), billeteTexto = Color(0xFF0A3D37),
@@ -86,15 +87,17 @@ private fun albert(peso: Int) = Font(
 )
 
 object Fuentes {
-    /** Archivo expandido y pesado: solo para el monto del billete y la moneda. */
-    val billete = archivo(850, 125f)
-    /** Archivo semiexpandido: títulos y cifras grandes. */
-    val titulo = archivo(750, 112f)
-    val cifra = archivo(700, 108f)
+    /** Archivo semiexpandido y pesado: solo para el monto de lo que te queda. Es lo único que levanta la voz. */
+    val monto = archivo(800, 112f)
+    /** Archivo de ancho normal: títulos de pantalla y de sección. */
+    val titulo = archivo(700, 100f)
+    /** Archivo para cifras medianas (resúmenes). */
+    val cifra = archivo(650, 100f)
     val texto = FontFamily(albert(400), albert(500), albert(600), albert(700))
-    /** Monoespaciada, solo en la boleta (imita la boleta térmica). */
-    val boleta = FontFamily(Font(R.font.plex_mono_regular, FontWeight.Normal), Font(R.font.plex_mono_medium, FontWeight.Medium))
 }
+
+/** Cifras de ancho fijo para que los montos se alineen en listas y tablas. */
+const val CIFRAS_TABULARES = "tnum"
 
 @Composable
 fun SencilloTema(content: @Composable () -> Unit) {
@@ -118,8 +121,8 @@ fun SencilloTema(content: @Composable () -> Unit) {
         labelLarge = base.copy(fontSize = 15.sp, fontWeight = FontWeight.SemiBold),
         labelMedium = base.copy(fontSize = 13.sp, fontWeight = FontWeight.Medium),
         labelSmall = base.copy(fontSize = 12.sp, fontWeight = FontWeight.Medium),
-        titleLarge = TextStyle(fontFamily = Fuentes.titulo, fontSize = 24.sp, lineHeight = 28.sp, color = p.texto),
-        titleMedium = TextStyle(fontFamily = Fuentes.titulo, fontSize = 18.sp, lineHeight = 23.sp, color = p.texto),
+        titleLarge = TextStyle(fontFamily = Fuentes.titulo, fontSize = 26.sp, lineHeight = 30.sp, color = p.texto),
+        titleMedium = TextStyle(fontFamily = Fuentes.titulo, fontSize = 19.sp, lineHeight = 24.sp, color = p.texto),
         titleSmall = TextStyle(fontFamily = Fuentes.titulo, fontSize = 16.sp, lineHeight = 21.sp, color = p.texto),
     )
     CompositionLocalProvider(LocalPaleta provides p) {
