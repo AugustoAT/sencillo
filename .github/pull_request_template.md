@@ -1,6 +1,8 @@
 ## Qué cambia y por qué
 
-Cierra #
+Closes #
+
+<!-- "Closes" va en inglés: es la palabra que GitHub reconoce para cerrar el issue al mergear. -->
 
 ## Cómo se probó
 
