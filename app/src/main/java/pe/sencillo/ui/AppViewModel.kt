@@ -43,7 +43,7 @@ sealed interface EstadoUi {
     ) : EstadoUi
 }
 
-enum class Pestana { MES, BOLETA, ANALISIS, METAS }
+enum class Pestana { MES, MOVIMIENTOS, ANALISIS, METAS }
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class AppViewModel(private val repo: Repositorio) : ViewModel() {

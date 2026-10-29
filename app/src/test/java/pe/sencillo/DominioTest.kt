@@ -87,7 +87,7 @@ class AnalisisTest {
         val movs = (1..20).map { gasto(it, 15, "comida") }
         val a = Analizador.analizar(octubre, LocalDate.of(2026, 10, 20), 300000, 20, movs, null)
         val r = Recomendador.recomendar(a, mapOf("comida" to 20000L), 30, tieneFondoEmergencia = false)
-        assertTrue(r.any { it.titulo.startsWith("Comida fuera se pasó") })
+        assertTrue(r.any { it.titulo.startsWith("Comida fuera pasó su límite") })
         assertTrue(r.any { it.titulo.contains("fondo de emergencia") })
         assertEquals(Nivel.ALERTA, r.first().nivel)
     }

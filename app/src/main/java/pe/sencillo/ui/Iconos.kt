@@ -27,7 +27,7 @@ object Iconos {
     private const val CIRCULO = "M3,12a9,9 0 1,0 18,0a9,9 0 1,0 -18,0"
 
     val mes = trazo("mes", "M5.5,6h13a2.5,2.5 0 0,1 2.5,2.5v7a2.5,2.5 0 0,1 -2.5,2.5h-13a2.5,2.5 0 0,1 -2.5,-2.5v-7a2.5,2.5 0 0,1 2.5,-2.5z", "M9.4,12a2.6,2.6 0 1,0 5.2,0a2.6,2.6 0 1,0 -5.2,0", "M6.5,9.5v0.01M17.5,14.5v0.01")
-    val boleta = trazo("boleta", "M6,3h12v18l-2,-1.4l-2,1.4l-2,-1.4l-2,1.4l-2,-1.4l-2,1.4z", "M9,8h6M9,12h6M9,16h3")
+    val movimientos = trazo("movimientos", "M9,7h11M9,12h11M9,17h11", "M4.5,7v0.01M4.5,12v0.01M4.5,17v0.01", grosor = 2f)
     val analisis = trazo("analisis", "M4,19h16", "M4,15l5,-5l4,3l7,-7", "M16,6h4v4")
     val metas = trazo("metas", "M5,11a7,6 0 0,1 13.5,-1.5H20v4h-1.6A7,6 0 0,1 16,17v2.5h-2.5V18h-3v1.5H8V17a7,6 0 0,1 -3,-6z", "M10,7.5h4")
     val mas = trazo("mas", "M12,5v14M5,12h14", grosor = 2.6f)

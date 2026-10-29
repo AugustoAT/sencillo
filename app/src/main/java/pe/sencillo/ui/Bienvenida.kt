@@ -40,7 +40,6 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import pe.sencillo.dominio.Dinero
 import pe.sencillo.seguridad.Bloqueo
-import pe.sencillo.ui.tema.Fuentes
 import pe.sencillo.ui.tema.Tema
 
 @Composable
@@ -65,10 +64,9 @@ fun Bienvenida(onEmpezar: (sueldo: Long, diaPago: Int, ahorroPct: Int, bloqueo: 
             .padding(horizontal = 20.dp, vertical = 24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        Moneda("S/", 56.dp)
-        Text("Ahorro+", fontFamily = Fuentes.billete, fontSize = 44.sp, letterSpacing = (-0.03).em)
+        MarcaTexto(40.sp)
         Text(
-            "Tu sueldo, tus gastos y tu ahorro del mes, en soles. Anota cada gasto en segundos y mira a dónde se va tu plata.",
+            "Lleva tu sueldo, tus gastos y tu ahorro del mes, en soles. Anotas cada gasto en segundos y ves a dónde se va tu plata.",
             fontSize = 17.sp, lineHeight = 24.sp, color = p.texto2,
         )
         Spacer(Modifier.height(4.dp))
@@ -110,18 +108,16 @@ fun Bienvenida(onEmpezar: (sueldo: Long, diaPago: Int, ahorroPct: Int, bloqueo: 
             }
             Switch(bloqueo, { bloqueo = it }, colors = SwitchDefaults.colors(checkedTrackColor = p.marca, checkedThumbColor = p.sobreMarca))
         }
-        Tarjeta {
-            Row(Modifier.padding(14.dp)) {
-                Icon(Iconos.candado, null, tint = p.marca, modifier = Modifier.size(20.dp))
-                Spacer(Modifier.width(10.dp))
-                Text(
-                    "Tus datos se quedan en este celular. Ahorro+ no usa internet, no tiene cuentas ni publicidad, y no pide permisos.",
-                    fontSize = 14.sp, color = p.texto2,
-                )
-            }
+        Row(Modifier.padding(vertical = 4.dp)) {
+            Icon(Iconos.candado, null, tint = p.marca, modifier = Modifier.size(20.dp))
+            Spacer(Modifier.width(10.dp))
+            Text(
+                "Tus datos se quedan en este celular. Ahorro+ no usa internet, no tiene cuentas ni publicidad, y no pide permisos.",
+                fontSize = 14.sp, color = p.texto2,
+            )
         }
         error?.let { Text(it, color = p.alertaTexto, fontSize = 14.sp) }
-        BotonPrincipal("Armar mis sobres", {
+        BotonPrincipal("Empezar", {
             val s = Dinero.deTexto(sueldo)
             val d = dia.toIntOrNull()
             error = when {
@@ -131,6 +127,6 @@ fun Bienvenida(onEmpezar: (sueldo: Long, diaPago: Int, ahorroPct: Int, bloqueo: 
             }
             if (error == null) onEmpezar(s!!, d!!, ahorro, bloqueo && bloqueoDisponible)
         }, Modifier.fillMaxWidth())
-        Text("Repartimos tu sueldo en sobres con la regla 50/30/20. Después los puedes ajustar.", fontSize = 13.sp, color = p.tenue)
+        Text("Con tu sueldo armamos un límite de gasto para cada categoría, con la regla 50/30/20. Después los puedes cambiar.", fontSize = 13.5.sp, color = p.texto2)
     }
 }

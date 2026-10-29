@@ -57,29 +57,31 @@ fun PantallaMetas(
     val aporteMensual = if (e.analisis.ahorrado > 0) e.analisis.ahorrado else e.perfil.sueldo * e.perfil.ahorroPct / 100
     val fondo = Analizador.fondoSugerido(e.sobres, e.perfil.sueldo)
 
-    LazyColumn(contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 130.dp)) {
+    LazyColumn(contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 4.dp, bottom = 24.dp)) {
         item {
-            Row(Modifier.fillMaxWidth().padding(top = 8.dp, bottom = 12.dp), verticalAlignment = Alignment.Bottom) {
+            Row(Modifier.fillMaxWidth().padding(top = 8.dp, bottom = 8.dp), verticalAlignment = Alignment.Top) {
                 Column(Modifier.weight(1f)) {
-                    Text("Tus alcancías", style = MaterialTheme.typography.titleLarge)
-                    Text("Cada meta junta lo que apartas con «Ahorro»", fontSize = 13.sp, color = p.tenue)
+                    Text("Metas de ahorro", style = MaterialTheme.typography.titleLarge)
+                    Text("Para qué estás juntando plata. Cuando anotes un ahorro, elige la meta.", fontSize = 13.5.sp, color = p.texto2, modifier = Modifier.padding(top = 2.dp))
                 }
-                BotonSecundario("Nueva meta", { editando = Meta(nombre = "", objetivo = 0, inicial = 0, limite = null) })
+                Enlace("Nueva meta", { editando = Meta(nombre = "", objetivo = 0, inicial = 0, limite = null) }, Modifier.padding(start = 8.dp))
             }
+            Separador()
         }
         items(e.metas, key = { it.meta.id }) { m ->
             Alcancia(m, aporteMensual / maxOf(1, e.metas.size), onAportar = { onAportar(m.meta.id) }, onEditar = { editando = m.meta })
         }
         if (!tieneFondo) item {
-            Tarjeta(Modifier.padding(bottom = 10.dp)) {
-                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text("Fondo de emergencia, sugerido", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+            Column {
+                Column(Modifier.padding(vertical = 18.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text("Te sugerimos un fondo de emergencia", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                     Text(
-                        "Lo recomendable es tener unos 3 meses de gastos básicos guardados: alrededor de ${Dinero.sol0(fondo)} según tus sobres. Te cubre si pierdes la chamba o sale un imprevisto.",
+                        "Lo recomendable es tener unos 3 meses de gastos básicos guardados: alrededor de ${Dinero.sol0(fondo)} según tus límites. Te cubre si pierdes la chamba o sale un imprevisto.",
                         fontSize = 14.sp, color = p.texto2,
                     )
                     BotonPrincipal("Crear esta meta", { onGuardar(Meta(nombre = "Fondo de emergencia", objetivo = fondo, inicial = 0, limite = null)) })
                 }
+                Separador()
             }
         }
         if (e.metas.isEmpty() && tieneFondo) item { Vacio("Sin metas", "Crea una para empezar a juntar.") }
@@ -107,19 +109,20 @@ private fun Alcancia(m: MetaConAhorro, aporteSugerido: Long, onAportar: () -> Un
             "Te faltan ${Dinero.sol0(falta)}. Con ${Dinero.sol0(aporte)} al mes llegas en ${(falta + aporte - 1) / aporte} meses."
         }
     }
-    Tarjeta(Modifier.padding(bottom = 10.dp)) {
-        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column {
+        Column(Modifier.padding(vertical = 16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(verticalAlignment = Alignment.Bottom) {
                 Text(m.meta.nombre, fontWeight = FontWeight.SemiBold, fontSize = 16.sp, modifier = Modifier.weight(1f))
-                Text("${Dinero.sol0(m.ahorrado)} de ${Dinero.sol0(m.meta.objetivo)}", fontFamily = Fuentes.cifra, fontSize = 13.sp)
+                Text("${Dinero.sol0(m.ahorrado)} de ${Dinero.sol0(m.meta.objetivo)}", fontSize = 15.sp, fontWeight = FontWeight.Medium, style = estiloMonto)
             }
             Medidor(fr, p.aho, p.aho.copy(alpha = .18f), alto = 10.dp)
             Text(plan, fontSize = 14.sp, color = p.texto2)
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                BotonPrincipal("Aportar", onAportar)
+                BotonPrincipal("Anotar un ahorro", onAportar)
                 BotonSecundario("Editar", onEditar)
             }
         }
+        Separador()
     }
 }
 

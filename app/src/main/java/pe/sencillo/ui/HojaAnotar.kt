@@ -139,10 +139,10 @@ fun HojaAnotar(
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(if (b.id == 0L) "Anotar" else "Editar movimiento", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+                Text(if (b.id == 0L) "Anotar un movimiento" else "Editar movimiento", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
                 IconButton(onClick = onCerrar) { Icon(Iconos.cerrar, "Cerrar", tint = p.texto2) }
             }
             // Tipo
@@ -174,13 +174,21 @@ fun HojaAnotar(
                     ) { Text(n, fontWeight = FontWeight.SemiBold, fontSize = 14.sp, color = if (sel) p.texto else p.texto2) }
                 }
             }
+            Text(
+                when (b.tipo) {
+                    Tipo.GASTO -> "Algo que pagaste. Se resta de lo que te queda."
+                    Tipo.INGRESO -> "Plata extra a tu sueldo. Se suma a lo que te queda."
+                    else -> "Plata que apartas para una meta. Sale de lo que te queda."
+                },
+                fontSize = 13.5.sp, color = p.texto2,
+            )
             // Monto
             Text(
                 buildAnnotatedString {
-                    withStyle(SpanStyle(fontSize = 0.44.em, color = p.tenue, baselineShift = BaselineShift(0.55f))) { append("S/ ") }
+                    withStyle(SpanStyle(fontSize = 0.48.em, color = p.texto2)) { append("S/ ") }
                     append(b.monto.ifEmpty { "0" })
                 },
-                fontFamily = Fuentes.billete, fontSize = 46.sp, letterSpacing = (-0.03).em,
+                fontFamily = Fuentes.monto, fontSize = 46.sp, letterSpacing = (-0.02).em,
                 color = if (b.monto.isEmpty()) p.tenue else p.texto,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth().semantics { liveRegion = LiveRegionMode.Polite },
@@ -275,7 +283,7 @@ fun HojaAnotar(
 
 @Composable
 fun Etiqueta(texto: String) {
-    Text(texto, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, color = Tema.p.tenue, modifier = Modifier.padding(bottom = 6.dp))
+    Text(texto, fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold, color = Tema.p.texto2, modifier = Modifier.padding(bottom = 6.dp))
 }
 
 @Composable
@@ -289,7 +297,7 @@ private fun Teclado(onTecla: (String) -> Unit) {
                     Box(
                         Modifier
                             .weight(1f)
-                            .height(46.dp)
+                            .height(44.dp)
                             .clip(RoundedCornerShape(12.dp))
                             .background(p.papel)
                             .clickable { onTecla(k) }
