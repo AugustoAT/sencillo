@@ -4,6 +4,8 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). L
 
 ## [Sin publicar]
 
+## [0.1.2] - 2026-10-29
+
 ### Agregado
 - Tutorial de 4 pasos la primera vez que se abre la app. Se puede repetir desde Ajustes → Ayuda.
 - Proceso de desarrollo: hoja de ruta, registro de decisiones, guía del proceso, plantillas de issues y PR, y script de publicación.
@@ -41,6 +43,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). L
   - Respaldo cifrado con AES-256-GCM.
   - Verificación SHA-256 de todas las dependencias.
 
-[Sin publicar]: https://github.com/AugustoAT/sencillo/compare/v0.1.1...HEAD
+[Sin publicar]: https://github.com/AugustoAT/sencillo/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/AugustoAT/sencillo/releases/tag/v0.1.2
 [0.1.1]: https://github.com/AugustoAT/sencillo/releases/tag/v0.1.1
 [0.1.0]: https://github.com/AugustoAT/sencillo/commits/v0.1.1
