@@ -5,32 +5,34 @@ App de Android para llevar el sueldo, los gastos y el ahorro del mes, en soles. 
 **Sin internet, sin cuentas, sin publicidad.** Todo queda en el celular.
 
 <p>
-  <img src="docs/capturas/mes.png" width="240" alt="Mi mes: el saldo como un billete, el estado del mes y los sobres">
-  <img src="docs/capturas/anotar.png" width="240" alt="Anotar un gasto con el teclado propio">
-  <img src="docs/capturas/analisis.png" width="240" alt="Análisis: ritmo del mes y regla 50/30/20">
+  <img src="docs/capturas/mes.png" width="200" alt="Mi mes, con el primer paso del tutorial: lo que te queda del mes">
+  <img src="docs/capturas/anotar.png" width="200" alt="Anotar un movimiento con el teclado propio">
+  <img src="docs/capturas/movimientos.png" width="200" alt="Movimientos del mes agrupados por día">
+  <img src="docs/capturas/analisis.png" width="200" alt="Análisis: cifras del mes y ritmo de gasto">
 </p>
 
 ## Qué hace
 
-- **Mi mes**: lo que te queda del mes como un billete, cuánto puedes gastar por día y los días que faltan. Debajo, los **sobres** (presupuesto por categoría) que se ponen ámbar cuando te acercas al límite y rojos cuando lo pasas.
-- **Anotar**: el botón dorado abre un teclado propio. Monto, categoría y listo. También registra ingresos extra (cachuelo, gratificación) y aportes de ahorro, y guarda cómo pagaste: efectivo, Yape/Plin, débito o crédito.
-- **Boleta**: todos los movimientos del mes por día. Al tocar uno se puede editar o borrar.
+- **Mi mes**: lo que te queda del mes, cuánto puedes gastar por día y los días que faltan. Debajo, los **límites por categoría**: lo máximo que quieres gastar en cada cosa. La barra se pone ámbar cuando te acercas y roja si te pasas.
+- **Anotar** (el botón del centro): cada vez que gastas, recibes plata o ahorras, lo anotas en el momento con un teclado propio. Pones el monto, eliges en qué fue y listo. También guarda cómo pagaste: efectivo, Yape/Plin, débito o crédito.
+- **Movimientos**: todo lo anotado en el mes, por día. Al tocar uno se puede editar o borrar.
+- **Tutorial** de cuatro pasos la primera vez. Se puede volver a ver desde Ajustes.
 - **Análisis**:
   - Ritmo de gasto contra el límite que te deja ahorrar, con la proyección a fin de mes.
   - Regla 50/30/20.
-  - Gasto por categoría contra su sobre y contra el mes anterior.
+  - Gasto por categoría contra su límite y contra el mes anterior.
   - Medios de pago.
 - **Recomendaciones**: se calculan en el celular. Detectan:
   - Ritmo de gasto excesivo.
-  - Sobres pasados o por pasarse.
+  - Categorías que pasaron su límite o van camino a pasarlo.
   - Gastos hormiga.
   - Falta de ahorro.
   - Uso alto de la tarjeta de crédito.
   - Ausencia de un fondo de emergencia.
 
   Cada una dice cuánto se podría ahorrar.
-- **Metas**: alcancías con cuánto aportar al mes para llegar a la fecha.
-- **Ajustes**: sueldo neto, día de pago, % de ahorro, sobres, bloqueo con huella, respaldo cifrado.
+- **Metas de ahorro**: para qué estás juntando plata y cuánto apartar al mes para llegar a la fecha.
+- **Ajustes**: sueldo neto, día de pago, % de ahorro, límites por categoría, bloqueo con huella y respaldo cifrado.
 
 ## Instalar
 
@@ -88,7 +90,7 @@ Si no encuentra ninguna, genera un APK sin firmar. **Guarda una copia de la clav
 
 ```
 app/src/main/java/pe/sencillo/
-  datos/       Room: movimientos, perfil, sobres, metas (dinero en céntimos)
+  datos/       Room: movimientos, perfil, límites por categoría (tabla `sobres`), metas; dinero en céntimos
   dominio/     catálogo, análisis del mes y recomendaciones (Kotlin puro, con tests)
   seguridad/   bloqueo biométrico, cifrado y validación del respaldo
   ingesta/     punto de entrada para integraciones (ver INTEGRACIONES.md)
