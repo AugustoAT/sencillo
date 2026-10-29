@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Problema de seguridad
+    url: https://github.com/AugustoAT/sencillo/security/advisories/new
+    about: Repórtalo en privado, no en un issue público.

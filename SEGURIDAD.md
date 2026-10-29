@@ -45,3 +45,7 @@ permission:      pe.sencillo.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION (de fi
 ```
 
 Android concede los tres sin preguntar. Ninguno da acceso a datos personales, a la red ni a otros archivos.
+
+## Reportar una vulnerabilidad
+
+No abras un issue público. Usa [Reportar una vulnerabilidad](https://github.com/AugustoAT/sencillo/security/advisories/new): solo lo ve el mantenedor. Indica la versión, el celular y los pasos para reproducirla.

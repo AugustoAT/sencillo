@@ -1,0 +1,26 @@
+name: Algo no funciona
+description: Reporta un error de Ahorro+
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Gracias por avisar. **No pegues montos reales, notas privadas ni capturas con tus datos**: este repositorio es público."
+  - type: textarea
+    id: que-paso
+    attributes:
+      label: Qué pasó
+      description: Qué hiciste, qué esperabas y qué pasó en cambio.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versión de Ahorro+
+      description: Está al final de Ajustes, por ejemplo 0.1.1.
+    validations:
+      required: true
+  - type: input
+    id: celular
+    attributes:
+      label: Celular y versión de Android
+      placeholder: Samsung A15, Android 14
