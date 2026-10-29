@@ -5,7 +5,17 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). L
 ## [Sin publicar]
 
 ### Agregado
+- Tutorial de 4 pasos la primera vez que se abre la app. Se puede repetir desde Ajustes → Ayuda.
 - Proceso de desarrollo: hoja de ruta, registro de decisiones, guía del proceso, plantillas de issues y PR, y script de publicación.
+
+### Cambiado
+- "Sobres" ahora se llama **Límites por categoría**: lo máximo que quieres gastar en cada cosa al mes.
+- El botón + ahora dice **Anotar**, y la hoja explica qué hace cada tipo (gasto, ingreso, ahorro) con lo que te queda.
+- "Boleta" ahora se llama **Movimientos**, agrupados por Hoy, Ayer o el día de la semana.
+- Diseño más limpio: sin gradientes, brillos ni adornos; secciones separadas por títulos; montos alineados; ícono nuevo "A+".
+
+### Corregido
+- En modo oscuro, algunos montos se veían negros sobre el fondo oscuro.
 
 ## [0.1.1] - 2026-10-28
 
